@@ -58,3 +58,8 @@ next-env.d.ts
 /*.jpg
 /*.jpeg
 /*.png
+
+# Carpeta de fotos originales para subir por el panel (no versionar)
+/Galería/
+*.HEIC
+*.heic
