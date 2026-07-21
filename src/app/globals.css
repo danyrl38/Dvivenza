@@ -4,8 +4,8 @@
 
 @layer base {
   :root {
-    --font-cormorant: "Cormorant Garamond", serif;
-    --font-manrope: "Manrope", system-ui, sans-serif;
+    --font-fraunces: "Fraunces", Georgia, serif;
+    --font-nunito: "Nunito", system-ui, sans-serif;
   }
 
   html {
@@ -24,8 +24,8 @@
   }
 
   ::selection {
-    background-color: #b99763;
-    color: #f8f5f1;
+    background-color: #ec5f2e;
+    color: #fff8f0;
   }
 
   /* Respetar preferencia de movimiento reducido */
@@ -48,19 +48,19 @@
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: #f8f5f1;
+    background: #fff8f0;
   }
   ::-webkit-scrollbar-thumb {
-    background: #d6c8bb;
+    background: #f6cbb0;
     border-radius: 9999px;
-    border: 2px solid #f8f5f1;
+    border: 2px solid #fff8f0;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #8d7566;
+    background: #ec5f2e;
   }
 
   :focus-visible {
-    outline: 2px solid #b99763;
+    outline: 2px solid #ec5f2e;
     outline-offset: 3px;
     border-radius: 4px;
   }

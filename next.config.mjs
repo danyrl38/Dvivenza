@@ -13,6 +13,10 @@ const nextConfig = {
   },
   experimental: {
     optimizePackageImports: ["framer-motion"],
+    // Permite subir imágenes/videos de la galería vía Server Actions.
+    serverActions: {
+      bodySizeLimit: "50mb",
+    },
   },
 };
 

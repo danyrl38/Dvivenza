@@ -20,6 +20,21 @@ export interface GalleryItem {
   height: number;
 }
 
+/**
+ * Medio de galería (imagen o video). Los ítems estáticos de `data.ts` y los
+ * que el administrador sube a Supabase comparten esta forma. `kind` es opcional
+ * (ausente = imagen) y `width`/`height` solo existen en los estáticos.
+ */
+export interface GalleryMediaItem {
+  id: string;
+  src: string;
+  alt: string;
+  category: GalleryCategory;
+  kind?: "image" | "video";
+  width?: number;
+  height?: number;
+}
+
 export interface Product {
   slug: string;
   name: string;

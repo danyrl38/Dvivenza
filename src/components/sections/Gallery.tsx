@@ -7,52 +7,80 @@ import { AnimatePresence, motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/Section";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { GALLERY, GALLERY_FILTERS } from "@/lib/data";
-import type { GalleryCategory } from "@/lib/types";
+import type { GalleryCategory, GalleryMediaItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 type Filter = GalleryCategory | "todos";
 
-function GalleryImage({
-  src,
-  alt,
-  width,
-  height,
-}: {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-}) {
+function GalleryTile({ item }: { item: GalleryMediaItem }) {
   const [loaded, setLoaded] = useState(false);
+
+  if (item.kind === "video") {
+    return (
+      <div className="group relative overflow-hidden rounded-2xl bg-arena/40 shadow-soft-sm">
+        <video
+          src={item.src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-chocolate/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      </div>
+    );
+  }
+
   return (
     <div className="group relative overflow-hidden rounded-2xl bg-arena/40 shadow-soft-sm">
       {!loaded && <Skeleton className="absolute inset-0 rounded-2xl" />}
-      <Image
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        onLoad={() => setLoaded(true)}
-        className={cn(
-          "h-auto w-full object-cover transition-all duration-500 group-hover:scale-[1.03]",
-          loaded ? "opacity-100" : "opacity-0",
-        )}
-      />
+      {item.width && item.height ? (
+        <Image
+          src={item.src}
+          alt={item.alt}
+          width={item.width}
+          height={item.height}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          onLoad={() => setLoaded(true)}
+          className={cn(
+            "h-auto w-full object-cover transition-all duration-500 group-hover:scale-[1.03]",
+            loaded ? "opacity-100" : "opacity-0",
+          )}
+        />
+      ) : (
+        // Medios subidos por el administrador (sin dimensiones conocidas).
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={item.src}
+          alt={item.alt}
+          loading="lazy"
+          decoding="async"
+          onLoad={() => setLoaded(true)}
+          className={cn(
+            "h-auto w-full object-cover transition-all duration-500 group-hover:scale-[1.03]",
+            loaded ? "opacity-100" : "opacity-0",
+          )}
+        />
+      )}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-chocolate/20 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
     </div>
   );
 }
 
-export function Gallery() {
+export function Gallery({ media }: { media?: GalleryMediaItem[] }) {
   const [filter, setFilter] = useState<Filter>("todos");
+
+  // Usa los medios gestionados en Supabase si existen; si no, los de por defecto.
+  const source: GalleryMediaItem[] =
+    media && media.length > 0 ? media : GALLERY;
 
   const items = useMemo(
     () =>
       filter === "todos"
-        ? GALLERY
-        : GALLERY.filter((item) => item.category === filter),
-    [filter],
+        ? source
+        : source.filter((item) => item.category === filter),
+    [filter, source],
   );
 
   return (
@@ -107,12 +135,7 @@ export function Gallery() {
                 exit={{ opacity: 0, scale: 0.94 }}
                 transition={{ duration: 0.35 }}
               >
-                <GalleryImage
-                  src={item.src}
-                  alt={item.alt}
-                  width={item.width}
-                  height={item.height}
-                />
+                <GalleryTile item={item} />
               </motion.div>
             ))}
           </AnimatePresence>

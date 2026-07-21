@@ -9,17 +9,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Paleta de marca Dvivenza
-        marfil: "#F8F5F1",
-        arena: "#E6DDD3",
-        beige: "#D6C8BB",
-        cafe: "#8D7566",
-        chocolate: "#4F3E35",
-        dorado: "#B99763",
+        // Paleta de marca Dvivenza — versión alegre, cálida y creativa.
+        // (Se conservan los mismos nombres de token para no alterar la estructura.)
+        marfil: "#FFF8F0", // crema cálida (fondo base)
+        arena: "#FFE7D4", // durazno suave (secciones / inputs)
+        beige: "#F6CBB0", // albaricoque claro (bordes)
+        cafe: "#B45C41", // terracota (texto secundario / iconos)
+        chocolate: "#3A2A2C", // cacao profundo (texto principal / botones)
+        dorado: "#EC5F2E", // coral vibrante (acento / CTA / detalles)
+        // Acentos extra opcionales para toques creativos.
+        menta: "#3FB8A0",
+        uva: "#8A5CC7",
+        sol: "#F5B429",
       },
       fontFamily: {
-        serif: ["var(--font-cormorant)", "Cormorant Garamond", "serif"],
-        sans: ["var(--font-manrope)", "Manrope", "system-ui", "sans-serif"],
+        serif: ["var(--font-fraunces)", "Fraunces", "Georgia", "serif"],
+        sans: ["var(--font-nunito)", "Nunito", "system-ui", "sans-serif"],
       },
       letterSpacing: {
         widest: "0.25em",

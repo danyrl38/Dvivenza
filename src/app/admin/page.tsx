@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 
 import { getSupabaseAdminClient } from "@/lib/supabase/server";
@@ -141,14 +142,22 @@ export default async function AdminPage() {
 
   return (
     <Shell>
-      <header className="mb-8 flex flex-col gap-1">
-        <p className="text-xs uppercase tracking-widest text-dorado">Dvivenza</p>
-        <h1 className="font-serif text-3xl text-chocolate sm:text-4xl">
-          Panel de pedidos
-        </h1>
-        <p className="text-sm text-cafe">
-          {orders.length} solicitud{orders.length === 1 ? "" : "es"} en total.
-        </p>
+      <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
+        <div className="flex flex-col gap-1">
+          <p className="text-xs uppercase tracking-widest text-dorado">Dvivenza</p>
+          <h1 className="font-serif text-3xl text-chocolate sm:text-4xl">
+            Panel de pedidos
+          </h1>
+          <p className="text-sm text-cafe">
+            {orders.length} solicitud{orders.length === 1 ? "" : "es"} en total.
+          </p>
+        </div>
+        <Link
+          href="/admin/galeria"
+          className="rounded-full border border-beige bg-white px-4 py-2 text-sm text-chocolate transition-colors hover:bg-arena/40"
+        >
+          Editar galería →
+        </Link>
       </header>
 
       {/* Resumen por estado */}

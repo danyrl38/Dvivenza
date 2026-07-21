@@ -99,3 +99,36 @@ alter table public.orders enable row level security;
 -- create policy "Subidas anónimas de referencias"
 --   on storage.objects for insert to anon
 --   with check (bucket_id = 'referencias');
+
+-- =============================================================================
+-- Galería editable: medios (imágenes/videos) que se muestran en la home.
+-- El administrador los gestiona desde /admin/galeria. La home los lee en
+-- público (RLS de solo lectura). Si la tabla está vacía, la web usa las
+-- imágenes por defecto incluidas en el código.
+-- =============================================================================
+create table if not exists public.gallery_media (
+  id           uuid primary key default gen_random_uuid(),
+  created_at   timestamptz not null default now(),
+  kind         text not null default 'image' check (kind in ('image', 'video')),
+  storage_path text not null,
+  public_url   text not null,
+  alt          text not null default '',
+  category     text not null default 'retratos',
+  sort_order   int  not null default 0
+);
+
+create index if not exists gallery_media_order_idx
+  on public.gallery_media (sort_order asc, created_at desc);
+
+alter table public.gallery_media enable row level security;
+
+-- Lectura pública de la galería (para mostrarla en la home).
+drop policy if exists "Lectura publica de galeria" on public.gallery_media;
+create policy "Lectura publica de galeria"
+  on public.gallery_media for select to anon, authenticated
+  using (true);
+
+-- Bucket público donde viven las imágenes/videos de la galería.
+insert into storage.buckets (id, name, public)
+  values ('galeria', 'galeria', true)
+  on conflict (id) do nothing;

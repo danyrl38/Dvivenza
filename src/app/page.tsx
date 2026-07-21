@@ -6,8 +6,12 @@ import { Testimonials } from "@/components/sections/Testimonials";
 import { FAQ } from "@/components/sections/FAQ";
 import { ClosingCTA } from "@/components/sections/ClosingCTA";
 import { FAQS } from "@/lib/data";
+import { getGalleryMedia } from "@/lib/gallery";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://dvivenza.com";
+
+// Regenera la home cada 5 min (y al vuelo cuando editas la galería).
+export const revalidate = 300;
 
 // Datos estructurados para SEO (JSON-LD)
 const jsonLd = {
@@ -35,7 +39,9 @@ const jsonLd = {
   ],
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const galleryMedia = await getGalleryMedia();
+
   return (
     <>
       <script
@@ -44,7 +50,7 @@ export default function HomePage() {
       />
       <Hero />
       <HowItWorks />
-      <Gallery />
+      <Gallery media={galleryMedia} />
       <Products />
       <Testimonials />
       <FAQ />

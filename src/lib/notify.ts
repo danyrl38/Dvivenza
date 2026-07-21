@@ -73,38 +73,38 @@ export async function sendOrderNotification(order: NotifyInput): Promise<void> {
     .filter(([, v]) => v)
     .map(
       ([k, v]) =>
-        `<tr><td style="padding:8px 16px;color:#8D7566;font-weight:600;font-size:13px;white-space:nowrap;vertical-align:top;">${k}</td><td style="padding:8px 16px;color:#4F3E35;font-size:14px;">${escapeHtml(
+        `<tr><td style="padding:8px 16px;color:#B45C41;font-weight:600;font-size:13px;white-space:nowrap;vertical-align:top;">${k}</td><td style="padding:8px 16px;color:#3A2A2C;font-size:14px;">${escapeHtml(
           String(v),
         )}</td></tr>`,
     )
     .join("");
 
   const html = `
-  <div style="background:#F8F5F1;padding:32px 16px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
+  <div style="background:#FFF8F0;padding:32px 16px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
     <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px -24px rgba(79,62,53,0.25);">
-      <div style="background:#4F3E35;padding:28px 32px;">
-        <p style="margin:0;color:#B99763;letter-spacing:0.25em;font-size:11px;text-transform:uppercase;">Dvivenza</p>
-        <h1 style="margin:6px 0 0;color:#F8F5F1;font-size:22px;font-weight:600;">Nuevo pedido recibido</h1>
+      <div style="background:#3A2A2C;padding:28px 32px;">
+        <p style="margin:0;color:#EC5F2E;letter-spacing:0.25em;font-size:11px;text-transform:uppercase;">Dvivenza</p>
+        <h1 style="margin:6px 0 0;color:#FFF8F0;font-size:22px;font-weight:600;">Nuevo pedido recibido</h1>
       </div>
       <div style="padding:24px 16px;">
-        <p style="margin:0 0 16px;padding:0 16px;color:#4F3E35;font-size:15px;">
+        <p style="margin:0 0 16px;padding:0 16px;color:#3A2A2C;font-size:15px;">
           <strong>${escapeHtml(order.full_name)}</strong> solicitó una cotización de <strong>${escapeHtml(
             artLabel,
           )}</strong>.
         </p>
         <div style="padding:0 16px 12px;">
-          <p style="margin:0 0 4px;color:#8D7566;font-size:13px;font-weight:600;">Descripción de la idea</p>
-          <p style="margin:0;color:#4F3E35;font-size:14px;line-height:1.6;background:#F8F5F1;border-radius:12px;padding:12px 14px;">${escapeHtml(
+          <p style="margin:0 0 4px;color:#B45C41;font-size:13px;font-weight:600;">Descripción de la idea</p>
+          <p style="margin:0;color:#3A2A2C;font-size:14px;line-height:1.6;background:#FFF8F0;border-radius:12px;padding:12px 14px;">${escapeHtml(
             order.description,
           )}</p>
         </div>
         <table style="width:100%;border-collapse:collapse;">${rowsHtml}</table>
         <div style="text-align:center;padding:24px 16px 8px;">
-          <a href="${siteUrl}/admin" style="display:inline-block;background:#B99763;color:#4F3E35;text-decoration:none;font-weight:600;font-size:14px;padding:12px 28px;border-radius:999px;">Ver en el panel</a>
+          <a href="${siteUrl}/admin" style="display:inline-block;background:#EC5F2E;color:#3A2A2C;text-decoration:none;font-weight:600;font-size:14px;padding:12px 28px;border-radius:999px;">Ver en el panel</a>
         </div>
       </div>
-      <div style="background:#F8F5F1;padding:16px 32px;text-align:center;">
-        <p style="margin:0;color:#8D7566;font-size:12px;">Responde a este correo para escribirle directamente al cliente.</p>
+      <div style="background:#FFF8F0;padding:16px 32px;text-align:center;">
+        <p style="margin:0;color:#B45C41;font-size:12px;">Responde a este correo para escribirle directamente al cliente.</p>
       </div>
     </div>
   </div>`;
