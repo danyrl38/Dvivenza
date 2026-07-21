@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { sendOrderNotification } from "@/lib/notify";
 import { getSupabaseAdminClient } from "@/lib/supabase/server";
 import type { OrderRecord } from "@/lib/types";
 import { isValidEmail } from "@/lib/utils";
@@ -84,6 +85,8 @@ export async function POST(request: Request) {
       email: record.email,
       art_type: record.art_type,
     });
+    // Aun sin base de datos, intentamos avisar por email si Resend está activo.
+    await sendOrderNotification(record);
     return NextResponse.json({
       ok: true,
       demo: true,
@@ -105,6 +108,9 @@ export async function POST(request: Request) {
       { status: 500 },
     );
   }
+
+  // Pedido guardado: notificamos por email (no bloquea la respuesta si falla).
+  await sendOrderNotification({ ...record, id: data?.id });
 
   return NextResponse.json({ ok: true, id: data?.id });
 }
