@@ -40,10 +40,13 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  return new NextResponse("Autenticación requerida.", {
+  // Nota: el valor de WWW-Authenticate debe ser ASCII puro (sin acentos ni "—"),
+  // de lo contrario la plataforma descarta la cabecera y el navegador no muestra
+  // el cuadro de inicio de sesión.
+  return new NextResponse("Autenticacion requerida.", {
     status: 401,
     headers: {
-      "WWW-Authenticate": 'Basic realm="Dvivenza — Panel de pedidos", charset="UTF-8"',
+      "WWW-Authenticate": 'Basic realm="Dvivenza Panel"',
     },
   });
 }
