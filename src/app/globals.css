@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-cormorant: "Cormorant Garamond", serif;
+    --font-manrope: "Manrope", system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-marfil text-chocolate font-sans antialiased;
+    font-feature-settings: "kern", "liga", "calt";
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+
+  ::selection {
+    background-color: #b99763;
+    color: #f8f5f1;
+  }
+
+  /* Respetar preferencia de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Scrollbar sutil */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f8f5f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d6c8bb;
+    border-radius: 9999px;
+    border: 2px solid #f8f5f1;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8d7566;
+  }
+
+  :focus-visible {
+    outline: 2px solid #b99763;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .container-content {
+    @apply mx-auto w-full max-w-content px-6 md:px-10;
+  }
+
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-widest text-dorado;
+  }
+
+  .link-underline {
+    @apply relative inline-block after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  /* Masonry con columnas CSS */
+  .masonry {
+    column-gap: 1.25rem;
+  }
+  .masonry > * {
+    break-inside: avoid;
+    margin-bottom: 1.25rem;
+  }
+}
