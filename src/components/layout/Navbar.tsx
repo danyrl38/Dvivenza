@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
@@ -54,7 +53,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Bloquear scroll y cerrar con Escape cuando el menú está abierto.
+  // Bloquear scroll del fondo y cerrar con Escape mientras el menú está abierto.
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     const onKey = (e: KeyboardEvent) => {
@@ -70,8 +69,8 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled || open
+        "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
+        scrolled
           ? "border-b border-beige/40 bg-marfil/90 backdrop-blur-md"
           : "border-b border-transparent bg-transparent",
       )}
@@ -98,83 +97,63 @@ export function Navbar() {
           </Button>
         </div>
 
-        {/* Botón menú móvil */}
+        {/* Botón abrir menú (móvil) */}
         <button
           type="button"
-          className="relative z-50 -mr-2 flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-1.5 lg:hidden"
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          className="-mr-2 flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-1.5 lg:hidden"
+          aria-label="Abrir menú"
           aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
+          aria-controls="mobile-menu"
+          onClick={() => setOpen(true)}
         >
-          <span
-            className={cn(
-              "h-0.5 w-6 rounded-full bg-chocolate transition-all duration-300",
-              open && "translate-y-2 rotate-45",
-            )}
-          />
-          <span
-            className={cn(
-              "h-0.5 w-6 rounded-full bg-chocolate transition-all duration-300",
-              open && "opacity-0",
-            )}
-          />
-          <span
-            className={cn(
-              "h-0.5 w-6 rounded-full bg-chocolate transition-all duration-300",
-              open && "-translate-y-2 -rotate-45",
-            )}
-          />
+          <span className="h-0.5 w-6 rounded-full bg-chocolate" />
+          <span className="h-0.5 w-6 rounded-full bg-chocolate" />
+          <span className="h-0.5 w-6 rounded-full bg-chocolate" />
         </button>
       </nav>
 
-      {/* Menú móvil */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 top-16 z-40 overflow-y-auto overscroll-contain bg-marfil md:top-20 lg:hidden"
-          >
-            <div className="container-content flex min-h-full flex-col gap-1 py-8">
-              {NAV_LINKS.map((link, i) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.04 * i + 0.05 }}
-                >
-                  <Link
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="block border-b border-beige/40 py-4 font-serif text-2xl text-chocolate transition-colors hover:text-dorado sm:text-3xl"
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
-              ))}
+      {/* Menú móvil: overlay a pantalla completa. Siempre visible cuando está
+          abierto (no depende de animaciones JS para mostrarse). */}
+      {open && (
+        <div
+          id="mobile-menu"
+          className="animate-fade-up fixed inset-0 z-[60] flex flex-col bg-marfil lg:hidden"
+        >
+          <div className="container-content flex h-16 items-center justify-between md:h-20">
+            <Logo onClick={() => setOpen(false)} />
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              aria-label="Cerrar menú"
+              className="-mr-2 flex h-11 w-11 items-center justify-center rounded-full text-2xl text-chocolate transition-colors hover:bg-arena/50"
+            >
+              ✕
+            </button>
+          </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="mt-8"
+          <nav className="container-content flex flex-1 flex-col overflow-y-auto pb-10 pt-2">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="block border-b border-beige/40 py-4 font-serif text-2xl text-chocolate transition-colors hover:text-dorado"
               >
-                <Button
-                  href="/pedido"
-                  size="lg"
-                  className="w-full justify-center"
-                  onClick={() => setOpen(false)}
-                >
-                  Crear mi obra
-                </Button>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                {link.label}
+              </Link>
+            ))}
+
+            <Button
+              href="/pedido"
+              size="lg"
+              className="mt-8 w-full justify-center"
+              onClick={() => setOpen(false)}
+            >
+              Crear mi obra
+            </Button>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

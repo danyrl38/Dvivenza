@@ -48,6 +48,12 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
+    /* La banda de ventajas conserva su movimiento suave y continuo
+       (mayor especificidad que la regla universal de arriba). */
+    .marquee-track {
+      animation-duration: 38s !important;
+      animation-iteration-count: infinite !important;
+    }
   }
 
   /* Scrollbar sutil */
@@ -105,9 +111,13 @@
     display: none;
   }
 
-  /* Pausa el marquee al pasar el cursor. */
-  .marquee-track:hover {
-    animation-play-state: paused;
+  /* Pausa el marquee al pasar el cursor SOLO en dispositivos con puntero fino
+     (ratón). En pantallas táctiles el estado :hover se "queda pegado" tras un
+     toque y congelaría el marquee, por eso se excluye. */
+  @media (hover: hover) and (pointer: fine) {
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
   }
 
   /* Textura sutil de papel para el acabado artístico. */
