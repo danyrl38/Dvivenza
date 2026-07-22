@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -23,14 +24,13 @@ function Comparator({
   return (
     <figure>
       <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-beige/50 shadow-soft">
-        {/* Después (obra final): capa base */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        {/* Después (obra final): capa base, optimizada por next/image */}
+        <Image
           src={despues}
           alt={`${label} — obra final pintada a mano`}
-          loading="lazy"
-          decoding="async"
-          className="absolute inset-0 h-full w-full object-cover"
+          fill
+          sizes="(max-width: 640px) 100vw, 50vw"
+          className="object-cover"
         />
 
         {/* Antes (foto original): capa recortada que se anima */}

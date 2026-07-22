@@ -284,4 +284,10 @@ export const COMPARISONS: Comparison[] = [
     despues: "/images/comparativa/familia-despues.jpg",
     label: "Familia",
   },
+  {
+    id: "gatos",
+    antes: "/images/comparativa/gatos-antes.jpg",
+    despues: "/images/comparativa/gatos-despues.jpg",
+    label: "Mascotas",
+  },
 ];
