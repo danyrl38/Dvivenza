@@ -114,7 +114,7 @@ export function HowItWorks() {
         )}
       >
         <h3 className="font-serif text-2xl text-chocolate md:text-3xl">
-          {allDone ? "¡Todo claro! Empecemos tu obra" : "¿List@ para empezar?"}
+          {allDone ? "¡Todo claro! Empecemos tu obra" : "¿Todo listo para empezar?"}
         </h3>
         <p className="mx-auto mt-3 max-w-lg text-pretty text-cafe">
           Cuéntanos tu idea y sube tus fotos de referencia. Te enviamos una

@@ -106,7 +106,7 @@ export default async function GaleriaPage() {
           {/* CTA de cierre */}
           <div className="mx-auto mt-20 max-w-2xl rounded-3xl border border-beige/60 bg-arena/25 p-10 text-center">
             <h2 className="font-serif text-2xl text-chocolate md:text-3xl">
-              ¿Lista tu idea?
+              ¿Ya tienes tu idea?
             </h2>
             <p className="mx-auto mt-3 max-w-lg text-pretty text-cafe">
               Cuéntanos qué recuerdo quieres transformar y te enviamos una

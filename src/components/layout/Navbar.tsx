@@ -25,13 +25,14 @@ function Logo({ onClick }: { onClick?: () => void }) {
       onClick={onClick}
       aria-label="Dvivenza — inicio"
     >
-      <span className="relative block h-10 w-10 overflow-hidden rounded-xl shadow-soft-sm ring-1 ring-chocolate/10 md:h-12 md:w-12">
+      {/* El logo es un PNG con transparencia: se muestra sin recuadro ni sombra. */}
+      <span className="relative block h-11 w-11 shrink-0 md:h-14 md:w-14">
         <Image
           src="/images/logo.png"
           alt="Logo de Dvivenza"
           fill
-          sizes="48px"
-          className="object-cover"
+          sizes="56px"
+          className="object-contain"
           priority
         />
       </span>

@@ -280,7 +280,7 @@ export const COMPARISONS: Comparison[] = [
     id: "familia",
     antes: "/images/comparativa/familia-antes.jpg",
     despues: "/images/comparativa/familia-despues.jpg",
-    label: "Reune personas",
+    label: "Reúne personas",
   },
   {
     id: "gatos",
