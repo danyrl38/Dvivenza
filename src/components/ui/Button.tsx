@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "secondary" | "ghost" | "inverse" | "ghostLight";
 type Size = "sm" | "md" | "lg";
 
 const base =
@@ -15,6 +15,11 @@ const variants: Record<Variant, string> = {
   secondary:
     "border border-cafe/30 bg-transparent text-chocolate hover:border-cafe hover:bg-arena/50 active:scale-[0.98]",
   ghost: "bg-transparent text-chocolate hover:bg-arena/60 active:scale-[0.98]",
+  // Para usar sobre fondos oscuros (p. ej. el CTA de cierre).
+  inverse:
+    "bg-marfil text-chocolate shadow-soft hover:bg-beige hover:shadow-soft-lg active:scale-[0.98]",
+  ghostLight:
+    "bg-transparent text-marfil hover:bg-marfil/10 active:scale-[0.98]",
 };
 
 const sizes: Record<Size, string> = {

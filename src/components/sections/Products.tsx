@@ -48,9 +48,6 @@ function FrameCorners() {
 }
 
 export function Products({ images }: { images?: Record<string, string> }) {
-  const [featured, ...rest] = PRODUCTS;
-  const featuredAccent = ACCENT[featured.slug] ?? fallbackAccent;
-
   return (
     <section
       id="productos"
@@ -88,69 +85,15 @@ export function Products({ images }: { images?: Record<string, string> }) {
           <span className="mt-2 h-px w-24 bg-gradient-to-r from-transparent via-dorado to-transparent" />
         </motion.div>
 
-        {/* Producto destacado */}
-        <motion.article
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={VIEWPORT}
-          transition={{ duration: 0.6 }}
-          className="group relative mt-16 overflow-hidden rounded-[2rem] bg-marfil shadow-soft-lg"
-        >
-          <span className={`block h-1.5 w-full ${featuredAccent.bar}`} />
-          <div className="grid gap-0 md:grid-cols-2">
-            <div className="relative p-3 md:p-4">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-beige/70 md:aspect-auto md:h-full md:min-h-[340px]">
-                <Image
-                  src={images?.[`product-${featured.slug}`] || featured.image}
-                  alt={featured.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <FrameCorners />
-              </div>
-            </div>
-
-            <div className="flex flex-col justify-center gap-4 p-8 md:p-10 lg:p-12">
-              <div className="flex flex-wrap items-center gap-3">
-                <Tag dot={featuredAccent.dot} label={featuredAccent.tag} />
-                <span className="rounded-full border border-dorado/40 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-dorado">
-                  Más pedido
-                </span>
-              </div>
-              <h3 className="font-serif text-3xl font-medium text-chocolate lg:text-4xl">
-                {featured.name}
-              </h3>
-              <p className="text-pretty leading-relaxed text-cafe">
-                {featured.description}
-              </p>
-              <div className="mt-2 flex flex-wrap items-center justify-between gap-4 border-t border-beige/60 pt-5">
-                <span className="text-sm text-cafe/80">
-                  <span className="block text-xs uppercase tracking-widest text-dorado">
-                    Producción
-                  </span>
-                  {featured.productionTime}
-                </span>
-                <Link
-                  href={`/pedido?tipo=${featured.artType}`}
-                  className="rounded-full bg-chocolate px-6 py-2.5 text-sm font-medium text-marfil transition-all duration-300 hover:bg-cafe"
-                >
-                  Personalizar
-                </Link>
-              </div>
-            </div>
-          </div>
-        </motion.article>
-
-        {/* Resto de productos */}
+        {/* Todos los productos, del mismo tamaño */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT}
-          className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {rest.map((product) => {
+          {PRODUCTS.map((product) => {
             const accent = ACCENT[product.slug] ?? fallbackAccent;
             return (
               <motion.article
@@ -169,6 +112,7 @@ export function Products({ images }: { images?: Record<string, string> }) {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
+                    <FrameCorners />
                   </div>
                 </div>
 

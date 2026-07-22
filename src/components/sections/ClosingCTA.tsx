@@ -27,19 +27,10 @@ export function ClosingCTA() {
             Cuéntanos tu idea y recibe una cotización personalizada. Sin compromiso.
           </p>
           <div className="relative mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button
-              href="/pedido"
-              size="lg"
-              className="bg-marfil text-chocolate hover:bg-beige"
-            >
+            <Button href="/pedido" variant="inverse" size="lg">
               Crear mi obra
             </Button>
-            <Button
-              href="/#galeria"
-              variant="ghost"
-              size="lg"
-              className="text-marfil hover:bg-marfil/10"
-            >
+            <Button href="/#galeria" variant="ghostLight" size="lg">
               Ver galería
             </Button>
           </div>
