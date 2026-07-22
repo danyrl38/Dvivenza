@@ -5,13 +5,8 @@ import { PRODUCTS } from "@/lib/data";
 import { getSiteMedia } from "@/lib/siteMedia";
 import { getSupabaseAdminClient } from "@/lib/supabase/server";
 
-import {
-  deleteMedia,
-  resetSiteMedia,
-  updateMediaOrder,
-  uploadMedia,
-  upsertSiteMedia,
-} from "./actions";
+import { deleteMedia, resetSiteMedia, updateMediaOrder } from "./actions";
+import { GalleryUploader, SlotUploader } from "./Uploaders";
 
 export const dynamic = "force-dynamic";
 
@@ -57,22 +52,7 @@ function SlotEditor({
         />
       </div>
       <p className="mb-2 text-sm font-medium text-chocolate">{label}</p>
-      <form action={upsertSiteMedia} className="mt-auto space-y-2">
-        <input type="hidden" name="slot" value={slot} />
-        <input
-          type="file"
-          name="file"
-          accept="image/*"
-          required
-          className="block w-full rounded-xl border border-beige bg-marfil px-2 py-1.5 text-xs text-chocolate file:mr-2 file:rounded-full file:border-0 file:bg-chocolate file:px-3 file:py-1 file:text-marfil"
-        />
-        <button
-          type="submit"
-          className="w-full rounded-full bg-dorado px-3 py-1.5 text-xs font-semibold text-marfil transition-transform hover:scale-[1.02]"
-        >
-          Reemplazar imagen
-        </button>
-      </form>
+      <SlotUploader slot={slot} />
       <form action={resetSiteMedia} className="mt-2">
         <input type="hidden" name="slot" value={slot} />
         <button
@@ -132,8 +112,8 @@ export default async function GalleryAdminPage() {
             Imágenes de la página
           </h1>
           <p className="mt-1 text-sm text-cafe">
-            Cambia la portada, las fotos de productos y la galería. Máximo ~4 MB
-            por archivo.
+            Cambia la portada, las fotos de productos y la galería. Las imágenes
+            se suben directo a tu almacenamiento (hasta 50 MB por archivo).
           </p>
         </div>
         <Link
@@ -177,48 +157,7 @@ export default async function GalleryAdminPage() {
       {/* GALERÍA — subir */}
       <section className="mb-6">
         <h2 className="mb-4 font-serif text-xl text-chocolate">Galería</h2>
-        <form
-          action={uploadMedia}
-          className="rounded-3xl border border-beige bg-white p-6 shadow-soft-sm"
-        >
-          <p className="text-sm text-cafe">
-            Sube varias imágenes o videos a la vez (JPG, PNG, WEBP, MP4, WEBM).
-            Máximo ~4 MB por archivo; para videos, usa clips cortos o
-            comprimidos.
-          </p>
-          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-end">
-            <label className="block flex-1">
-              <span className="mb-1 block text-sm font-medium text-chocolate">
-                Archivos
-              </span>
-              <input
-                type="file"
-                name="files"
-                accept="image/*,video/*"
-                multiple
-                required
-                className="block w-full rounded-2xl border border-beige bg-marfil px-3 py-2 text-sm text-chocolate file:mr-3 file:rounded-full file:border-0 file:bg-chocolate file:px-4 file:py-1.5 file:text-marfil"
-              />
-            </label>
-            <label className="block flex-1">
-              <span className="mb-1 block text-sm font-medium text-chocolate">
-                Descripción (opcional)
-              </span>
-              <input
-                type="text"
-                name="alt"
-                placeholder="Ej. Retrato de familia"
-                className="block w-full rounded-2xl border border-beige bg-marfil px-3 py-2.5 text-sm text-chocolate focus:border-dorado focus:outline-none"
-              />
-            </label>
-            <button
-              type="submit"
-              className="rounded-full bg-dorado px-6 py-2.5 text-sm font-semibold text-marfil transition-transform hover:scale-[1.02]"
-            >
-              Subir
-            </button>
-          </div>
-        </form>
+        <GalleryUploader />
       </section>
 
       {/* GALERÍA — medios actuales */}
