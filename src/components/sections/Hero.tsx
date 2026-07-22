@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/Button";
 import { HERO } from "@/lib/data";
 import { TRANSITION_EASE } from "@/lib/motion";
 
-export function Hero() {
+export function Hero({ imageSrc }: { imageSrc?: string }) {
+  const heroImage = imageSrc || "/images/hero.jpg";
   return (
     <section className="relative overflow-hidden bg-marfil pt-28 md:pt-32">
       <div className="container-content">
@@ -65,7 +66,7 @@ export function Hero() {
           >
             <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-soft-lg">
               <Image
-                src="/images/hero.jpg"
+                src={heroImage}
                 alt="Obra de arte personalizada hecha a mano por Dvivenza"
                 fill
                 priority

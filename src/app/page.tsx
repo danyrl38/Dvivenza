@@ -1,12 +1,14 @@
 import { Hero } from "@/components/sections/Hero";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Gallery } from "@/components/sections/Gallery";
+import { BeforeAfter } from "@/components/sections/BeforeAfter";
 import { Products } from "@/components/sections/Products";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { FAQ } from "@/components/sections/FAQ";
 import { ClosingCTA } from "@/components/sections/ClosingCTA";
 import { FAQS } from "@/lib/data";
 import { getGalleryMedia } from "@/lib/gallery";
+import { getSiteMedia } from "@/lib/siteMedia";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://dvivenza.com";
 
@@ -40,7 +42,10 @@ const jsonLd = {
 };
 
 export default async function HomePage() {
-  const galleryMedia = await getGalleryMedia();
+  const [galleryMedia, siteMedia] = await Promise.all([
+    getGalleryMedia(),
+    getSiteMedia(),
+  ]);
 
   return (
     <>
@@ -48,10 +53,11 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Hero />
+      <Hero imageSrc={siteMedia["hero"]} />
       <HowItWorks />
       <Gallery media={galleryMedia} />
-      <Products />
+      <BeforeAfter />
+      <Products images={siteMedia} />
       <Testimonials />
       <FAQ />
       <ClosingCTA />

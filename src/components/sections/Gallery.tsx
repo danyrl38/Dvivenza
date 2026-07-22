@@ -1,16 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { SectionHeading } from "@/components/ui/Section";
 import { Skeleton } from "@/components/ui/Skeleton";
-import { GALLERY, GALLERY_FILTERS } from "@/lib/data";
-import type { GalleryCategory, GalleryMediaItem } from "@/lib/types";
+import { GALLERY } from "@/lib/data";
+import type { GalleryMediaItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
-
-type Filter = GalleryCategory | "todos";
 
 function GalleryTile({ item }: { item: GalleryMediaItem }) {
   const [loaded, setLoaded] = useState(false);
@@ -69,19 +67,9 @@ function GalleryTile({ item }: { item: GalleryMediaItem }) {
 }
 
 export function Gallery({ media }: { media?: GalleryMediaItem[] }) {
-  const [filter, setFilter] = useState<Filter>("todos");
-
   // Usa los medios gestionados en Supabase si existen; si no, los de por defecto.
-  const source: GalleryMediaItem[] =
+  const items: GalleryMediaItem[] =
     media && media.length > 0 ? media : GALLERY;
-
-  const items = useMemo(
-    () =>
-      filter === "todos"
-        ? source
-        : source.filter((item) => item.category === filter),
-    [filter, source],
-  );
 
   return (
     <section id="galeria" className="bg-arena/20 py-20 md:py-28 lg:py-32">
@@ -91,34 +79,6 @@ export function Gallery({ media }: { media?: GalleryMediaItem[] }) {
           title="Obras que guardan historias"
           description="Cada pieza es única. Explora algunos de los recuerdos que hemos transformado en arte."
         />
-
-        {/* Filtros */}
-        <div className="mt-12 flex flex-wrap justify-center gap-2 md:gap-3">
-          {GALLERY_FILTERS.map((f) => {
-            const active = filter === f.value;
-            return (
-              <button
-                key={f.value}
-                type="button"
-                onClick={() => setFilter(f.value)}
-                aria-pressed={active}
-                className={cn(
-                  "relative rounded-full px-5 py-2 text-sm font-medium transition-colors duration-300",
-                  active ? "text-marfil" : "text-cafe hover:text-chocolate",
-                )}
-              >
-                {active && (
-                  <motion.span
-                    layoutId="gallery-filter-pill"
-                    className="absolute inset-0 rounded-full bg-chocolate"
-                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                  />
-                )}
-                <span className="relative z-10">{f.label}</span>
-              </button>
-            );
-          })}
-        </div>
 
         {/* Masonry */}
         <motion.div

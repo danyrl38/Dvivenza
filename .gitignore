@@ -63,3 +63,6 @@ next-env.d.ts
 /Galería/
 *.HEIC
 *.heic
+
+# Carpeta de banners originales (no versionar; se copian a /public)
+/banners/

@@ -132,3 +132,24 @@ create policy "Lectura publica de galeria"
 insert into storage.buckets (id, name, public)
   values ('galeria', 'galeria', true)
   on conflict (id) do nothing;
+
+-- =============================================================================
+-- Imágenes editables de secciones fijas (portada / productos).
+-- Cada "slot" identifica un hueco de imagen de la página:
+--   'hero'                       → imagen de la portada
+--   'product-<slug>'             → foto de cada tarjeta de producto
+-- Si un slot no existe, la web usa la imagen por defecto del código.
+-- =============================================================================
+create table if not exists public.site_media (
+  slot         text primary key,
+  public_url   text not null,
+  storage_path text,
+  updated_at   timestamptz not null default now()
+);
+
+alter table public.site_media enable row level security;
+
+drop policy if exists "Lectura publica de site_media" on public.site_media;
+create policy "Lectura publica de site_media"
+  on public.site_media for select to anon, authenticated
+  using (true);

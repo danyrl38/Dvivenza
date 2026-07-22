@@ -46,10 +46,19 @@ export function Navbar() {
       <nav className="container-content flex h-16 items-center justify-between md:h-20">
         <Link
           href="/"
-          className="font-serif text-2xl font-semibold tracking-wide text-chocolate md:text-3xl"
+          className="flex items-center gap-2.5"
           onClick={() => setOpen(false)}
+          aria-label="Dvivenza — inicio"
         >
-          Dvivenza
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/logo-dvivenza.jpg"
+            alt="Logo de Dvivenza"
+            className="h-9 w-9 object-contain mix-blend-multiply md:h-11 md:w-11"
+          />
+          <span className="font-serif text-2xl font-semibold tracking-wide text-chocolate md:text-3xl">
+            Dvivenza
+          </span>
         </Link>
 
         <ul className="hidden items-center gap-8 lg:flex">

@@ -261,3 +261,27 @@ export const ACCEPTED_IMAGE_TYPES = [
 
 export const MAX_REFERENCE_IMAGES = 20;
 export const MAX_FILE_SIZE_MB = 15;
+
+// --- Comparaciones "antes / después" (foto original → obra pintada) --------
+
+export interface Comparison {
+  id: string;
+  antes: string; // foto de referencia
+  despues: string; // obra final pintada a mano
+  label: string;
+}
+
+export const COMPARISONS: Comparison[] = [
+  {
+    id: "amigos",
+    antes: "/images/comparativa/amigos-antes.jpg",
+    despues: "/images/comparativa/amigos-despues.jpg",
+    label: "Amigos",
+  },
+  {
+    id: "familia",
+    antes: "/images/comparativa/familia-antes.jpg",
+    despues: "/images/comparativa/familia-despues.jpg",
+    label: "Familia",
+  },
+];

@@ -8,7 +8,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { PRODUCTS } from "@/lib/data";
 import { fadeUp, staggerContainer, VIEWPORT } from "@/lib/motion";
 
-export function Products() {
+export function Products({ images }: { images?: Record<string, string> }) {
   return (
     <Section id="productos" className="bg-marfil">
       <SectionHeading
@@ -32,7 +32,7 @@ export function Products() {
           >
             <div className="relative aspect-[4/5] overflow-hidden bg-arena/40">
               <Image
-                src={product.image}
+                src={images?.[`product-${product.slug}`] || product.image}
                 alt={product.name}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
