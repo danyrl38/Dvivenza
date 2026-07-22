@@ -5,7 +5,12 @@ import { PRODUCTS } from "@/lib/data";
 import { getSiteMedia } from "@/lib/siteMedia";
 import { getSupabaseAdminClient } from "@/lib/supabase/server";
 
-import { deleteMedia, resetSiteMedia, updateMediaOrder } from "./actions";
+import {
+  deleteMedia,
+  moveMedia,
+  resetSiteMedia,
+  setMediaPosition,
+} from "./actions";
 import { GalleryUploader, SlotUploader } from "./Uploaders";
 
 export const dynamic = "force-dynamic";
@@ -162,9 +167,15 @@ export default async function GalleryAdminPage() {
 
       {/* GALERÍA — medios actuales */}
       <section>
-        <h3 className="mb-4 text-sm font-medium text-cafe">
-          En la galería ({media.length})
-        </h3>
+        <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
+          <h3 className="text-sm font-medium text-cafe">
+            En la galería ({media.length})
+          </h3>
+          <p className="text-xs text-cafe/70">
+            El número es su posición. Usa ← → para moverla, o escribe una
+            posición y pulsa &quot;Ir a&quot;.
+          </p>
+        </div>
 
         {media.length === 0 ? (
           <div className="rounded-3xl border border-dashed border-beige bg-white/60 p-10 text-center">
@@ -175,7 +186,7 @@ export default async function GalleryAdminPage() {
           </div>
         ) : (
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {media.map((item) => (
+            {media.map((item, index) => (
               <div
                 key={item.id}
                 className="flex flex-col overflow-hidden rounded-2xl border border-beige bg-white shadow-soft-sm"
@@ -200,29 +211,61 @@ export default async function GalleryAdminPage() {
                   <span className="absolute left-2 top-2 rounded-full bg-chocolate/80 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-marfil">
                     {item.kind === "video" ? "Video" : "Foto"}
                   </span>
+                  {/* Posición actual en la galería */}
+                  <span className="absolute right-2 top-2 flex h-6 min-w-6 items-center justify-center rounded-full bg-dorado px-1.5 text-[11px] font-bold text-marfil">
+                    {index + 1}
+                  </span>
                 </div>
 
                 <div className="flex flex-1 flex-col gap-2 p-3">
-                  <form
-                    action={updateMediaOrder}
-                    className="flex items-center gap-2"
-                  >
+                  {/* Mover una posición */}
+                  <div className="flex items-center gap-1.5">
+                    <form action={moveMedia} className="flex-1">
+                      <input type="hidden" name="id" value={item.id} />
+                      <input type="hidden" name="dir" value="prev" />
+                      <button
+                        type="submit"
+                        disabled={index === 0}
+                        aria-label="Mover antes"
+                        className="w-full rounded-lg bg-arena py-1 text-xs font-medium text-chocolate transition-colors hover:bg-beige disabled:cursor-not-allowed disabled:opacity-40"
+                      >
+                        ←
+                      </button>
+                    </form>
+                    <form action={moveMedia} className="flex-1">
+                      <input type="hidden" name="id" value={item.id} />
+                      <input type="hidden" name="dir" value="next" />
+                      <button
+                        type="submit"
+                        disabled={index === media.length - 1}
+                        aria-label="Mover después"
+                        className="w-full rounded-lg bg-arena py-1 text-xs font-medium text-chocolate transition-colors hover:bg-beige disabled:cursor-not-allowed disabled:opacity-40"
+                      >
+                        →
+                      </button>
+                    </form>
+                  </div>
+
+                  {/* Saltar a una posición exacta */}
+                  <form action={setMediaPosition} className="flex items-center gap-1.5">
                     <input type="hidden" name="id" value={item.id} />
-                    <label className="text-xs text-cafe" htmlFor={`ord-${item.id}`}>
-                      Orden
+                    <label className="sr-only" htmlFor={`pos-${item.id}`}>
+                      Posición
                     </label>
                     <input
-                      id={`ord-${item.id}`}
+                      id={`pos-${item.id}`}
                       type="number"
-                      name="sort_order"
-                      defaultValue={item.sort_order}
-                      className="w-16 rounded-lg border border-beige bg-marfil px-2 py-1 text-sm text-chocolate focus:border-dorado focus:outline-none"
+                      name="position"
+                      min={1}
+                      max={media.length}
+                      defaultValue={index + 1}
+                      className="w-14 rounded-lg border border-beige bg-marfil px-2 py-1 text-sm text-chocolate focus:border-dorado focus:outline-none"
                     />
                     <button
                       type="submit"
-                      className="rounded-lg bg-arena px-2 py-1 text-xs font-medium text-chocolate hover:bg-beige"
+                      className="flex-1 rounded-lg border border-beige px-2 py-1 text-xs font-medium text-cafe transition-colors hover:bg-arena/50"
                     >
-                      OK
+                      Ir a
                     </button>
                   </form>
 

@@ -149,7 +149,6 @@ export const TESTIMONIALS: Testimonial[] = [
     location: "Ciudad de México",
     quote:
       "El retrato superó todas mis expectativas. Capturaron la esencia de mi mamá de una forma que me hizo llorar de felicidad.",
-    avatar: "/images/avatars/avatar-1.jpg",
     rating: 5,
   },
   {
@@ -158,7 +157,6 @@ export const TESTIMONIALS: Testimonial[] = [
     location: "Guadalajara",
     quote:
       "Pedí un cuadro de mi perro y quedó espectacular. Se nota el amor y el detalle en cada pincelada. Un regalo inolvidable.",
-    avatar: "/images/avatars/avatar-2.jpg",
     rating: 5,
   },
   {
@@ -167,7 +165,6 @@ export const TESTIMONIALS: Testimonial[] = [
     location: "Monterrey",
     quote:
       "La experiencia completa se sintió premium desde el primer mensaje. La obra final es una joya que conservaré toda la vida.",
-    avatar: "/images/avatars/avatar-3.jpg",
     rating: 5,
   },
 ];
@@ -271,29 +268,30 @@ export interface Comparison {
   label: string;
 }
 
+// Las etiquetas corresponden al nombre del archivo de la obra final.
 export const COMPARISONS: Comparison[] = [
   {
     id: "amigos",
     antes: "/images/comparativa/amigos-antes.jpg",
     despues: "/images/comparativa/amigos-despues.jpg",
-    label: "Amigos",
+    label: "Crea realidades",
   },
   {
     id: "familia",
     antes: "/images/comparativa/familia-antes.jpg",
     despues: "/images/comparativa/familia-despues.jpg",
-    label: "Familia",
+    label: "Reune personas",
   },
   {
     id: "gatos",
     antes: "/images/comparativa/gatos-antes.jpg",
     despues: "/images/comparativa/gatos-despues.jpg",
-    label: "Gatos",
+    label: "Deja volar tu imaginación",
   },
   {
     id: "compadres",
     antes: "/images/comparativa/compadres-antes.jpg",
     despues: "/images/comparativa/compadres-despues.jpg",
-    label: "Compadres",
+    label: "Revive momentos",
   },
 ];

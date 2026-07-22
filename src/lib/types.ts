@@ -50,7 +50,6 @@ export interface Testimonial {
   name: string;
   location: string;
   quote: string;
-  avatar: string;
   rating: number;
 }
 

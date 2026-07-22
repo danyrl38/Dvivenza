@@ -146,20 +146,66 @@ export async function deleteMedia(formData: FormData): Promise<void> {
   refresh();
 }
 
-/** Actualiza el orden de un medio. Menor número = aparece antes. */
-export async function updateMediaOrder(formData: FormData): Promise<void> {
+type Db = NonNullable<ReturnType<typeof getSupabaseAdminClient>>;
+
+/** Devuelve los ids en el orden en que se muestran actualmente. */
+async function currentOrder(supabase: Db): Promise<string[]> {
+  const { data } = await supabase
+    .from("gallery_media")
+    .select("id")
+    .order("sort_order", { ascending: true })
+    .order("created_at", { ascending: false });
+  return ((data ?? []) as { id: string }[]).map((r) => r.id);
+}
+
+/** Reescribe sort_order de forma consecutiva (0,1,2…) según el arreglo dado. */
+async function persistOrder(supabase: Db, ids: string[]): Promise<void> {
+  await Promise.all(
+    ids.map((id, i) =>
+      supabase.from("gallery_media").update({ sort_order: i }).eq("id", id),
+    ),
+  );
+}
+
+/** Mueve una foto una posición hacia adelante o hacia atrás. */
+export async function moveMedia(formData: FormData): Promise<void> {
   const id = String(formData.get("id") || "").trim();
-  const order = Number.parseInt(String(formData.get("sort_order") || "0"), 10);
-  if (!id || Number.isNaN(order)) return;
+  const dir = String(formData.get("dir") || "");
+  if (!id || (dir !== "prev" && dir !== "next")) return;
 
   const supabase = getSupabaseAdminClient();
   if (!supabase) return;
 
-  await supabase
-    .from("gallery_media")
-    .update({ sort_order: order })
-    .eq("id", id);
+  const ids = await currentOrder(supabase);
+  const from = ids.indexOf(id);
+  if (from === -1) return;
+  const to = dir === "prev" ? from - 1 : from + 1;
+  if (to < 0 || to >= ids.length) return;
 
+  [ids[from], ids[to]] = [ids[to], ids[from]];
+  await persistOrder(supabase, ids);
+  refresh();
+}
+
+/** Coloca una foto en una posición exacta (empezando en 1). */
+export async function setMediaPosition(formData: FormData): Promise<void> {
+  const id = String(formData.get("id") || "").trim();
+  const pos = Number.parseInt(String(formData.get("position") || ""), 10);
+  if (!id || Number.isNaN(pos)) return;
+
+  const supabase = getSupabaseAdminClient();
+  if (!supabase) return;
+
+  const ids = await currentOrder(supabase);
+  const from = ids.indexOf(id);
+  if (from === -1) return;
+
+  const to = Math.max(0, Math.min(ids.length - 1, pos - 1));
+  if (to === from) return;
+
+  ids.splice(from, 1);
+  ids.splice(to, 0, id);
+  await persistOrder(supabase, ids);
   refresh();
 }
 

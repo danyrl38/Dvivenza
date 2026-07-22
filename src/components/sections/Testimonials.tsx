@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -67,20 +66,13 @@ export function Testimonials() {
                 <p className="text-balance font-serif text-2xl font-light leading-relaxed text-marfil md:text-3xl">
                   “{current.quote}”
                 </p>
-                <div className="mt-8 flex items-center gap-4">
-                  <span className="relative h-14 w-14 overflow-hidden rounded-full ring-2 ring-dorado/40">
-                    <Image
-                      src={current.avatar}
-                      alt={current.name}
-                      fill
-                      sizes="56px"
-                      className="object-cover"
-                    />
-                  </span>
-                  <div className="text-left">
-                    <p className="font-medium text-marfil">{current.name}</p>
-                    <p className="text-sm text-arena/70">{current.location}</p>
-                  </div>
+                <div className="mt-8 flex flex-col items-center gap-1">
+                  <span
+                    aria-hidden
+                    className="mb-3 h-px w-12 bg-gradient-to-r from-transparent via-dorado to-transparent"
+                  />
+                  <p className="font-medium text-marfil">{current.name}</p>
+                  <p className="text-sm text-arena/70">{current.location}</p>
                 </div>
               </motion.blockquote>
             </AnimatePresence>
