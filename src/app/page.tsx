@@ -53,7 +53,10 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Hero imageSrc={siteMedia["hero"]} />
+      <Hero
+        imageSrc={siteMedia["hero"]}
+        productImageSrc={siteMedia["hero-producto"]}
+      />
       <HowItWorks />
       <Gallery media={galleryMedia} />
       <BeforeAfter />

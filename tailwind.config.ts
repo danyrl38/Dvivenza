@@ -53,10 +53,15 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         shimmer: "shimmer 1.6s infinite",
         "fade-up": "fade-up 0.6s ease-out both",
+        marquee: "marquee 38s linear infinite",
       },
     },
   },

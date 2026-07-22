@@ -290,4 +290,10 @@ export const COMPARISONS: Comparison[] = [
     despues: "/images/comparativa/gatos-despues.jpg",
     label: "Mascotas",
   },
+  {
+    id: "compadres",
+    antes: "/images/comparativa/compadres-antes.jpg",
+    despues: "/images/comparativa/compadres-despues.jpg",
+    label: "Compadres",
+  },
 ];

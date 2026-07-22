@@ -4,13 +4,28 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/Button";
+import { Marquee } from "@/components/ui/Marquee";
 import { HERO } from "@/lib/data";
 import { TRANSITION_EASE } from "@/lib/motion";
 
-export function Hero({ imageSrc }: { imageSrc?: string }) {
+export function Hero({
+  imageSrc,
+  productImageSrc,
+}: {
+  imageSrc?: string;
+  productImageSrc?: string;
+}) {
   const heroImage = imageSrc || "/images/hero.jpg";
+  const productImage = productImageSrc || "/images/hero-producto.jpg";
+
   return (
     <section className="relative overflow-hidden bg-marfil pt-28 md:pt-32">
+      {/* Ornamento sutil de fondo */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-24 top-24 h-72 w-72 rounded-full bg-dorado/10 blur-3xl"
+      />
+
       <div className="container-content">
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
           {/* Texto */}
@@ -28,16 +43,37 @@ export function Hero({ imageSrc }: { imageSrc?: string }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: TRANSITION_EASE, delay: 0.1 }}
-              className="mt-5 text-balance text-5xl font-medium leading-[1.05] text-chocolate md:text-6xl lg:text-7xl"
+              className="mt-5 text-balance text-4xl font-medium leading-[1.08] text-chocolate sm:text-5xl md:text-6xl lg:text-7xl"
             >
               {HERO.title}
             </motion.h1>
 
+            {/* Imagen del producto, justo debajo del título */}
+            <motion.figure
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: TRANSITION_EASE, delay: 0.18 }}
+              className="art-frame relative mt-7 max-w-md"
+            >
+              <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
+                <Image
+                  src={productImage}
+                  alt="Retrato personalizado hecho a mano por Dvivenza"
+                  fill
+                  sizes="(max-width: 1024px) 90vw, 420px"
+                  className="object-cover"
+                />
+              </div>
+              <figcaption className="absolute -right-3 -top-3 rounded-full bg-dorado px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-marfil shadow-soft-sm">
+                Hecho a mano
+              </figcaption>
+            </motion.figure>
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: TRANSITION_EASE, delay: 0.2 }}
-              className="mt-6 max-w-lg text-pretty text-lg leading-relaxed text-cafe"
+              transition={{ duration: 0.7, ease: TRANSITION_EASE, delay: 0.26 }}
+              className="mt-7 max-w-lg text-pretty text-lg leading-relaxed text-cafe"
             >
               {HERO.subtitle}
             </motion.p>
@@ -45,7 +81,7 @@ export function Hero({ imageSrc }: { imageSrc?: string }) {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: TRANSITION_EASE, delay: 0.3 }}
+              transition={{ duration: 0.7, ease: TRANSITION_EASE, delay: 0.34 }}
               className="mt-9 flex flex-col gap-4 sm:flex-row"
             >
               <Button href="/pedido" size="lg">
@@ -57,7 +93,7 @@ export function Hero({ imageSrc }: { imageSrc?: string }) {
             </motion.div>
           </div>
 
-          {/* Imagen */}
+          {/* Imagen principal */}
           <motion.div
             initial={{ opacity: 0, scale: 1.04 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -79,27 +115,18 @@ export function Hero({ imageSrc }: { imageSrc?: string }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: TRANSITION_EASE, delay: 0.6 }}
-              className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-beige/50 bg-marfil/90 px-6 py-4 shadow-soft backdrop-blur-sm sm:block"
+              className="absolute -bottom-6 -left-2 hidden rounded-2xl border border-beige/50 bg-marfil/90 px-6 py-4 shadow-soft backdrop-blur-sm sm:block lg:-left-6"
             >
               <p className="font-serif text-3xl font-semibold text-chocolate">100%</p>
               <p className="text-sm text-cafe">hecho a mano</p>
             </motion.div>
           </motion.div>
         </div>
+      </div>
 
-        {/* Barra de confianza */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="mt-20 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 border-t border-beige/50 pt-10 text-center text-sm uppercase tracking-widest text-cafe/70 md:mt-24"
-        >
-          <span>Piezas únicas</span>
-          <span className="hidden md:inline">·</span>
-          <span>Envíos a todo el país</span>
-          <span className="hidden md:inline">·</span>
-          <span>Atención personalizada</span>
-        </motion.div>
+      {/* Banda infinita de ventajas */}
+      <div className="mt-20 md:mt-24">
+        <Marquee />
       </div>
     </section>
   );

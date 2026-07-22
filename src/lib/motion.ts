@@ -42,5 +42,13 @@ export const hoverLift = {
   hover: { y: -6, transition: { duration: 0.3, ease: EASE } },
 };
 
-export const VIEWPORT = { once: true, margin: "-80px" };
+/**
+ * Viewport por defecto: `once: false` para que los elementos animen tanto al
+ * ENTRAR como al SALIR del viewport mientras se hace scroll.
+ */
+export const VIEWPORT = { once: false, margin: "-80px" };
+
+/** Para elementos que solo deben animarse la primera vez. */
+export const VIEWPORT_ONCE = { once: true, margin: "-80px" };
+
 export const TRANSITION_EASE = EASE;

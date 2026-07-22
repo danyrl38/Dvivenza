@@ -115,6 +115,8 @@ export default async function GalleryAdminPage() {
   const media = (data ?? []) as MediaRow[];
 
   const heroUrl = siteMedia["hero"] || "/images/hero.jpg";
+  const heroProductUrl =
+    siteMedia["hero-producto"] || "/images/hero-producto.jpg";
   const productSlots = PRODUCTS.map((p) => ({
     slot: `product-${p.slug}`,
     label: p.name,
@@ -146,7 +148,12 @@ export default async function GalleryAdminPage() {
       <section className="mb-10">
         <h2 className="mb-4 font-serif text-xl text-chocolate">Portada (inicio)</h2>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-          <SlotEditor slot="hero" label="Imagen de portada" currentUrl={heroUrl} />
+          <SlotEditor slot="hero" label="Imagen grande de portada" currentUrl={heroUrl} />
+          <SlotEditor
+            slot="hero-producto"
+            label="Imagen del producto (bajo el título)"
+            currentUrl={heroProductUrl}
+          />
         </div>
       </section>
 

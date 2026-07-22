@@ -12,11 +12,19 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    /* Evita el scroll horizontal por elementos decorativos desbordados. */
+    overflow-x: clip;
   }
 
   body {
     @apply bg-marfil text-chocolate font-sans antialiased;
     font-feature-settings: "kern", "liga", "calt";
+  }
+
+  /* Compensa la barra fija al saltar a una sección con #ancla. */
+  section[id],
+  div[id] {
+    scroll-margin-top: 6rem;
   }
 
   h1, h2, h3, h4 {
@@ -86,6 +94,35 @@
   }
   .text-pretty {
     text-wrap: pretty;
+  }
+
+  /* Oculta la barra de scroll (carrusel de galería). */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Pausa el marquee al pasar el cursor. */
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  /* Textura sutil de papel para el acabado artístico. */
+  .paper-texture {
+    background-image: radial-gradient(
+        circle at 1px 1px,
+        rgba(180, 92, 65, 0.06) 1px,
+        transparent 0
+      );
+    background-size: 22px 22px;
+  }
+
+  /* Marco tipo cuadro (passepartout) para imágenes destacadas. */
+  .art-frame {
+    @apply rounded-2xl border border-beige/70 bg-marfil p-2 shadow-soft;
   }
   /* Masonry con columnas CSS */
   .masonry {

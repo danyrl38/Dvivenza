@@ -3,8 +3,10 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+import { Button } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { COMPARISONS } from "@/lib/data";
+import { VIEWPORT } from "@/lib/motion";
 
 const SWEEP = {
   duration: 7,
@@ -99,6 +101,31 @@ export function BeforeAfter() {
           />
         ))}
       </div>
+
+      {/* CTA de la sección */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={VIEWPORT}
+        transition={{ duration: 0.5 }}
+        className="mx-auto mt-16 max-w-2xl rounded-3xl border border-beige/60 bg-marfil p-8 text-center shadow-soft-sm md:p-10"
+      >
+        <h3 className="font-serif text-2xl text-chocolate md:text-3xl">
+          Tu foto también puede ser una obra
+        </h3>
+        <p className="mx-auto mt-3 max-w-lg text-pretty text-cafe">
+          Envíanos la fotografía que más significado tenga para ti y la
+          convertimos en una pieza pintada a mano.
+        </p>
+        <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
+          <Button href="/pedido" size="lg">
+            Transformar mi foto
+          </Button>
+          <Button href="/galeria" variant="secondary" size="lg">
+            Ver más obras
+          </Button>
+        </div>
+      </motion.div>
     </Section>
   );
 }
