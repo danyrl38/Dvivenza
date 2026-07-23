@@ -5,7 +5,7 @@ import { LegalLayout } from "@/components/layout/LegalLayout";
 export const metadata: Metadata = {
   title: "Aviso de privacidad",
   description:
-    "Aviso de privacidad de Dvivenza: cómo recopilamos, usamos y protegemos tus datos personales.",
+    "Aviso de privacidad de D'Vivenza: cómo recopilamos, usamos y protegemos tus datos personales.",
 };
 
 export default function PrivacidadPage() {
@@ -13,7 +13,7 @@ export default function PrivacidadPage() {
     <LegalLayout
       title="Aviso de privacidad"
       updatedAt="julio de 2026"
-      intro="En Dvivenza valoramos y protegemos tu información. Este aviso explica qué datos recopilamos y cómo los utilizamos."
+      intro="En D'Vivenza valoramos y protegemos tu información. Este aviso explica qué datos recopilamos y cómo los utilizamos."
       sections={[
         {
           heading: "Datos que recopilamos",

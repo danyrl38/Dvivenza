@@ -30,7 +30,7 @@ export function Marquee() {
   return (
     <div
       className="relative w-full overflow-hidden border-y border-beige/60 bg-arena/30 py-4"
-      aria-label="Ventajas de Dvivenza"
+      aria-label="Ventajas de D'Vivenza"
     >
       {/* Degradados en los bordes para un corte suave */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-marfil to-transparent sm:w-24" />

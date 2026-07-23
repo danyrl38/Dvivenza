@@ -215,11 +215,10 @@ export const ART_TYPE_OPTIONS: { value: ArtType; label: string; description: str
 ];
 
 export const BUDGET_OPTIONS: { value: BudgetRange; label: string }[] = [
-  { value: "sin-presupuesto", label: "No tengo presupuesto" },
-  { value: "menos-2000", label: "Menos de $2,000" },
+  { value: "menos-1000", label: "Menos de $1,000" },
+  { value: "1000-2000", label: "$1,000 – $2,000" },
   { value: "2000-4000", label: "$2,000 – $4,000" },
-  { value: "4000-8000", label: "$4,000 – $8,000" },
-  { value: "mas-8000", label: "Más de $8,000" },
+  { value: "mas-4000", label: "Más de $4,000" },
 ];
 
 export const SIZE_OPTIONS = [

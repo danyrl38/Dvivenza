@@ -5,7 +5,7 @@ import { LegalLayout } from "@/components/layout/LegalLayout";
 export const metadata: Metadata = {
   title: "Políticas",
   description:
-    "Políticas de pedidos, producción, envíos y devoluciones de Dvivenza.",
+    "Políticas de pedidos, producción, envíos y devoluciones de D'Vivenza.",
 };
 
 export default function PoliticasPage() {
@@ -13,7 +13,7 @@ export default function PoliticasPage() {
     <LegalLayout
       title="Políticas"
       updatedAt="julio de 2026"
-      intro="Estas políticas describen cómo trabajamos cada pedido en Dvivenza para asegurar una experiencia clara, cuidada y transparente."
+      intro="Estas políticas describen cómo trabajamos cada pedido en D'Vivenza para asegurar una experiencia única, de calidad y transparente."
       sections={[
         {
           heading: "Pedidos y cotizaciones",
@@ -25,7 +25,7 @@ export default function PoliticasPage() {
         {
           heading: "Producción",
           body: [
-            "Los tiempos de producción son estimados y se confirman en tu cotización. Al tratarse de arte hecho a mano, pueden variar ligeramente.",
+            "Al tratarse de arte hecho a mano, pueden variar ligeramente. Los tiempos de producción son estimados y se confirman en tu cotización.",
             "Compartimos avances y aprobaciones durante el proceso para asegurar que la obra refleje tu visión.",
           ],
         },

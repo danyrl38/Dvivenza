@@ -22,13 +22,13 @@ function Logo({ onClick }: { onClick?: () => void }) {
       href="/"
       className="flex shrink-0 items-center gap-2.5"
       onClick={onClick}
-      aria-label="Dvivenza — inicio"
+      aria-label="D'Vivenza — inicio"
     >
       {/* El logo es un PNG con transparencia: se muestra sin recuadro ni sombra. */}
       <span className="relative block h-11 w-11 shrink-0 md:h-14 md:w-14">
         <Image
           src="/images/logo.png"
-          alt="Logo de Dvivenza"
+          alt="Logo de D'Vivenza"
           fill
           sizes="56px"
           className="object-contain"
@@ -36,7 +36,7 @@ function Logo({ onClick }: { onClick?: () => void }) {
         />
       </span>
       <span className="font-serif text-2xl font-semibold tracking-wide text-chocolate md:text-3xl">
-        Dvivenza
+        D'Vivenza
       </span>
     </Link>
   );

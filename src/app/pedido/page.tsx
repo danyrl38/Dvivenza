@@ -37,7 +37,7 @@ export default async function PedidoPage({
         <div className="container-content max-w-3xl text-center">
           <span className="eyebrow">Pedido personalizado</span>
           <h1 className="mt-4 text-balance text-4xl font-medium leading-tight text-chocolate md:text-5xl lg:text-6xl">
-            Creemos juntos tu obra
+            Empecemos a crear tu obra
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-pretty text-lg leading-relaxed text-cafe">
             Cuéntanos tu historia paso a paso. Te acompañamos para que tu recuerdo

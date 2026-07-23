@@ -30,6 +30,7 @@ interface OrderPayload {
   specialColors?: string;
   desiredDate?: string;
   budget?: string;
+  shippingAddress?: string;
   referencePaths?: string[];
 }
 
@@ -72,6 +73,7 @@ export async function POST(request: Request) {
     special_colors: body.specialColors?.trim() || null,
     desired_date: body.desiredDate?.trim() || null,
     budget: body.budget?.trim() || null,
+    shipping_address: body.shippingAddress?.trim() || null,
     reference_paths: Array.isArray(body.referencePaths) ? body.referencePaths : [],
     status: "nuevo",
   };

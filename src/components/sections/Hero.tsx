@@ -58,7 +58,7 @@ export function Hero({
               <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
                 <Image
                   src={productImage}
-                  alt="Retrato personalizado hecho a mano por Dvivenza"
+                  alt="Retrato personalizado hecho a mano por D'Vivenza"
                   fill
                   sizes="(max-width: 1024px) 90vw, 420px"
                   className="object-cover"
@@ -103,7 +103,7 @@ export function Hero({
             <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-soft-lg">
               <Image
                 src={heroImage}
-                alt="Obra de arte personalizada hecha a mano por Dvivenza"
+                alt="Obra de arte personalizada hecha a mano por D'Vivenza"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"

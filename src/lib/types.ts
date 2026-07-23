@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// Tipos compartidos de Dvivenza
+// Tipos compartidos de D'Vivenza
 // -----------------------------------------------------------------------------
 
 export type GalleryCategory =
@@ -76,11 +76,10 @@ export type ArtType =
   | "otro";
 
 export type BudgetRange =
-  | "sin-presupuesto"
-  | "menos-2000"
+  | "menos-1000"
+  | "1000-2000"
   | "2000-4000"
-  | "4000-8000"
-  | "mas-8000";
+  | "mas-4000";
 
 export interface ReferenceImage {
   id: string;
@@ -112,6 +111,8 @@ export interface OrderFormData {
   desiredDate: string; // ISO yyyy-mm-dd
   // Paso 7 — Presupuesto
   budget: BudgetRange | "";
+  // Envío
+  shippingAddress: string;
 }
 
 /** Estructura que se persiste en Supabase (tabla `orders`). */
@@ -131,6 +132,7 @@ export interface OrderRecord {
   special_colors: string | null;
   desired_date: string | null;
   budget: string | null;
+  shipping_address: string | null;
   reference_paths: string[];
   status: OrderStatus;
 }

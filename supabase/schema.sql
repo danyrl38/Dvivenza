@@ -49,6 +49,7 @@ create table if not exists public.orders (
   -- Logística
   desired_date    date,
   budget          text,
+  shipping_address text,
 
   -- Archivos (rutas dentro del bucket de Storage)
   reference_paths text[] not null default '{}',

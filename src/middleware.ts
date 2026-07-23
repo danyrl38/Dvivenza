@@ -46,7 +46,7 @@ export function middleware(req: NextRequest) {
   return new NextResponse("Autenticacion requerida.", {
     status: 401,
     headers: {
-      "WWW-Authenticate": 'Basic realm="Dvivenza Panel"',
+      "WWW-Authenticate": "Basic realm=\"D'Vivenza Panel\"",
     },
   });
 }

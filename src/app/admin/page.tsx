@@ -10,7 +10,7 @@ import { updateOrderStatus } from "./actions";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Panel de pedidos — Dvivenza",
+  title: "Panel de pedidos — D'Vivenza",
   robots: { index: false, follow: false },
 };
 
@@ -144,7 +144,7 @@ export default async function AdminPage() {
     <Shell>
       <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div className="flex flex-col gap-1">
-          <p className="text-xs uppercase tracking-widest text-dorado">Dvivenza</p>
+          <p className="text-xs uppercase tracking-widest text-dorado">D'Vivenza</p>
           <h1 className="font-serif text-3xl text-chocolate sm:text-4xl">
             Panel de pedidos
           </h1>

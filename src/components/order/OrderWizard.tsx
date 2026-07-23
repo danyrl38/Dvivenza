@@ -6,24 +6,16 @@ import { STEPS, TOTAL_STEPS, useOrder } from "@/components/order/OrderContext";
 import { Stepper } from "@/components/order/Stepper";
 import { Button } from "@/components/ui/Button";
 import { StepClientInfo } from "@/components/order/steps/StepClientInfo";
-import { StepArtType } from "@/components/order/steps/StepArtType";
-import { StepDescription } from "@/components/order/steps/StepDescription";
-import { StepReferences } from "@/components/order/steps/StepReferences";
-import { StepDetails } from "@/components/order/steps/StepDetails";
-import { StepDeliveryDate } from "@/components/order/steps/StepDeliveryDate";
-import { StepBudget } from "@/components/order/steps/StepBudget";
-import { StepSummary } from "@/components/order/steps/StepSummary";
+import { StepPedido } from "@/components/order/steps/StepPedido";
+import { StepReferencesDetails } from "@/components/order/steps/StepReferencesDetails";
+import { StepEnvio } from "@/components/order/steps/StepEnvio";
 import { CONTACT } from "@/lib/contact";
 
 const STEP_COMPONENTS = [
   StepClientInfo,
-  StepArtType,
-  StepDescription,
-  StepReferences,
-  StepDetails,
-  StepDeliveryDate,
-  StepBudget,
-  StepSummary,
+  StepPedido,
+  StepReferencesDetails,
+  StepEnvio,
 ];
 
 function SuccessScreen({ message }: { message: string }) {
@@ -134,7 +126,7 @@ export function OrderWizard() {
         </div>
       </div>
 
-      {!canAdvance && step <= 2 && (
+      {!canAdvance && step <= 1 && (
         <p className="mt-4 text-center text-sm text-cafe/70">
           Completa los campos requeridos para continuar.
         </p>

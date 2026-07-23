@@ -22,14 +22,14 @@ import type {
 import { isValidEmail, uid } from "@/lib/utils";
 
 export const STEPS = [
-  { key: "cliente", title: "Información", subtitle: "Cuéntanos quién eres" },
-  { key: "tipo", title: "Tipo de obra", subtitle: "¿Qué quieres crear?" },
-  { key: "descripcion", title: "Descripción", subtitle: "La historia detrás" },
-  { key: "referencias", title: "Referencias", subtitle: "Sube tus fotos" },
-  { key: "detalles", title: "Detalles", subtitle: "Afinemos la pieza" },
-  { key: "fecha", title: "Entrega", subtitle: "¿Para cuándo?" },
-  { key: "presupuesto", title: "Presupuesto", subtitle: "Opcional" },
-  { key: "resumen", title: "Resumen", subtitle: "Revisa y envía" },
+  { key: "cliente", title: "Tus datos", subtitle: "¿Quién hace el pedido?" },
+  { key: "pedido", title: "Tu pedido", subtitle: "Tipo y descripción" },
+  {
+    key: "referencias",
+    title: "Referencias",
+    subtitle: "Fotos, detalles y fecha",
+  },
+  { key: "envio", title: "Envío", subtitle: "Presupuesto y dirección" },
 ] as const;
 
 export const TOTAL_STEPS = STEPS.length;
@@ -50,6 +50,7 @@ const initialData: OrderFormData = {
   specialColors: "",
   desiredDate: "",
   budget: "",
+  shippingAddress: "",
 };
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
@@ -187,10 +188,10 @@ export function OrderProvider({
             data.country.trim().length > 0
           );
         case 1:
-          return data.artType !== null;
-        case 2:
-          return data.description.trim().length >= 10;
+          // Paso 2: tipo de obra + descripción.
+          return data.artType !== null && data.description.trim().length >= 10;
         default:
+          // Pasos 3 (referencias/detalles/fecha) y 4 (envío) son opcionales.
           return true;
       }
     },
@@ -262,6 +263,7 @@ export function OrderProvider({
           specialColors: data.specialColors,
           desiredDate: data.desiredDate,
           budget: data.budget,
+          shippingAddress: data.shippingAddress,
           referencePaths,
         }),
       });

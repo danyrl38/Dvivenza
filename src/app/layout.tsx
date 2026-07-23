@@ -24,8 +24,8 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://dvivenza.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Dvivenza — Transformamos tus recuerdos en obras de arte",
-    template: "%s · Dvivenza",
+    default: "D'Vivenza — Transformamos tus recuerdos en obras de arte",
+    template: "%s · D'Vivenza",
   },
   description:
     "Creamos retratos y piezas personalizadas hechas a mano que convierten tus momentos más importantes en recuerdos para toda la vida.",
@@ -36,16 +36,16 @@ export const metadata: Metadata = {
     "retratos de mascotas",
     "regalos personalizados",
     "arte hecho a mano",
-    "Dvivenza",
+    "D'Vivenza",
   ],
-  authors: [{ name: "Dvivenza" }],
-  creator: "Dvivenza",
+  authors: [{ name: "D'Vivenza" }],
+  creator: "D'Vivenza",
   openGraph: {
     type: "website",
     locale: "es_MX",
     url: siteUrl,
-    siteName: "Dvivenza",
-    title: "Dvivenza — Transformamos tus recuerdos en obras de arte",
+    siteName: "D'Vivenza",
+    title: "D'Vivenza — Transformamos tus recuerdos en obras de arte",
     description:
       "Retratos y piezas personalizadas hechas a mano para conservar tus momentos más importantes.",
     images: [
@@ -53,13 +53,13 @@ export const metadata: Metadata = {
         url: "/images/hero.jpg",
         width: 2000,
         height: 1125,
-        alt: "Obra de arte personalizada de Dvivenza",
+        alt: "Obra de arte personalizada de D'Vivenza",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dvivenza — Transformamos tus recuerdos en obras de arte",
+    title: "D'Vivenza — Transformamos tus recuerdos en obras de arte",
     description:
       "Retratos y piezas personalizadas hechas a mano para conservar tus momentos más importantes.",
     images: ["/images/hero.jpg"],

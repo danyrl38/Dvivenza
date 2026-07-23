@@ -21,7 +21,7 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      name: "Dvivenza",
+      name: "D'Vivenza",
       url: siteUrl,
       description:
         "Retratos y piezas personalizadas hechas a mano para conservar tus momentos más importantes.",

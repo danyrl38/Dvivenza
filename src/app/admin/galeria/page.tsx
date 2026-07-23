@@ -16,7 +16,7 @@ import { GalleryUploader, SlotUploader } from "./Uploaders";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Imágenes de la página — Dvivenza",
+  title: "Imágenes de la página — D'Vivenza",
   robots: { index: false, follow: false },
 };
 
@@ -112,7 +112,7 @@ export default async function GalleryAdminPage() {
     <Shell>
       <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs uppercase tracking-widest text-dorado">Dvivenza</p>
+          <p className="text-xs uppercase tracking-widest text-dorado">D'Vivenza</p>
           <h1 className="font-serif text-3xl text-chocolate sm:text-4xl">
             Imágenes de la página
           </h1>

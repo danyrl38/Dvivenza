@@ -11,7 +11,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "Galería",
   description:
-    "Todas las obras personalizadas de Dvivenza: retratos, mascotas, familia, prendas y más, hechas a mano.",
+    "Todas las obras personalizadas de D'Vivenza: retratos, mascotas, familia, prendas y más, hechas a mano.",
 };
 
 function Tile({ item }: { item: GalleryMediaItem }) {

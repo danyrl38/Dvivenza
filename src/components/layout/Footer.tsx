@@ -24,7 +24,7 @@ export function Footer() {
           {/* Marca */}
           <div className="max-w-sm">
             <p className="font-serif text-3xl font-semibold text-chocolate">
-              Dvivenza
+              D'Vivenza
             </p>
             <p className="mt-4 text-pretty leading-relaxed text-cafe">
               Transformamos tus recuerdos en obras de arte personalizadas, hechas a
@@ -76,7 +76,7 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-beige/50 pt-8 text-sm text-cafe md:flex-row">
-          <p>© {year} Dvivenza. Todos los derechos reservados.</p>
+          <p>© {year} D'Vivenza. Todos los derechos reservados.</p>
           <p className="text-cafe/70">Arte personalizado hecho a mano.</p>
         </div>
       </div>
