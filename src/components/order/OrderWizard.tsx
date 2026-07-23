@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { STEPS, TOTAL_STEPS, useOrder } from "@/components/order/OrderContext";
 import { Stepper } from "@/components/order/Stepper";
@@ -80,18 +80,11 @@ export function OrderWizard() {
           </h2>
         </div>
 
-        {/* Contenido del paso */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={step}
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -24 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <StepComponent />
-          </motion.div>
-        </AnimatePresence>
+        {/* Contenido del paso. Entrada animada por CSS (no depende de rAF, así
+            el contenido siempre aparece aunque la animación no llegue a correr). */}
+        <div key={step} className="animate-fade-up">
+          <StepComponent />
+        </div>
 
         {/* Mensaje de error */}
         {submitState === "error" && (
