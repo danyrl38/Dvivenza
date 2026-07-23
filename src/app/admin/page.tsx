@@ -144,7 +144,7 @@ export default async function AdminPage() {
     <Shell>
       <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div className="flex flex-col gap-1">
-          <p className="text-xs uppercase tracking-widest text-dorado">D'Vivenza</p>
+          <p className="text-xs uppercase tracking-widest text-dorado">D&apos;Vivenza</p>
           <h1 className="font-serif text-3xl text-chocolate sm:text-4xl">
             Panel de pedidos
           </h1>

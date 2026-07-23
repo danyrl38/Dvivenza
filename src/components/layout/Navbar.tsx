@@ -36,7 +36,7 @@ function Logo({ onClick }: { onClick?: () => void }) {
         />
       </span>
       <span className="font-serif text-2xl font-semibold tracking-wide text-chocolate md:text-3xl">
-        D'Vivenza
+        D&apos;Vivenza
       </span>
     </Link>
   );

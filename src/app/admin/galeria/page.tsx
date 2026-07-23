@@ -112,7 +112,7 @@ export default async function GalleryAdminPage() {
     <Shell>
       <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-xs uppercase tracking-widest text-dorado">D'Vivenza</p>
+          <p className="text-xs uppercase tracking-widest text-dorado">D&apos;Vivenza</p>
           <h1 className="font-serif text-3xl text-chocolate sm:text-4xl">
             Imágenes de la página
           </h1>
