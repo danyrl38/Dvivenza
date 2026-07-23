@@ -230,20 +230,11 @@ export const SIZE_OPTIONS = [
 ];
 
 export const MATERIAL_OPTIONS = [
-  "Canvas / Lienzo",
-  "Papel fine art",
-  "Madera",
-  "Acrílico",
-  "Digital",
-  "No estoy seguro/a",
-];
-
-export const FRAME_OPTIONS = [
-  "Sin marco",
-  "Marco de madera natural",
-  "Marco negro minimalista",
-  "Marco dorado mate",
-  "No estoy seguro/a",
+  "Óleo",
+  "Acuarela",
+  "Grafito",
+  "Lápiz de color",
+  "No estoy segura/o",
 ];
 
 export const ACCEPTED_IMAGE_TYPES = [

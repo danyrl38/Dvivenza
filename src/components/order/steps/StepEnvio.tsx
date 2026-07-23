@@ -33,7 +33,7 @@ export function StepEnvio() {
       </section>
 
       <section className="border-t border-beige/50 pt-10">
-        <SubHeading hint="¿A dónde enviaríamos tu obra? Puedes completarla después.">
+        <SubHeading hint="¿A dónde enviaríamos tu obra?">
           Dirección de envío
         </SubHeading>
         <TextAreaField

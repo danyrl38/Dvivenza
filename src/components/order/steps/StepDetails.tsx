@@ -6,7 +6,7 @@ import {
   TextAreaField,
   TextField,
 } from "@/components/order/fields";
-import { FRAME_OPTIONS, MATERIAL_OPTIONS, SIZE_OPTIONS } from "@/lib/data";
+import { MATERIAL_OPTIONS, SIZE_OPTIONS } from "@/lib/data";
 
 export function StepDetails() {
   const { data, setField } = useOrder();
@@ -40,15 +40,6 @@ export function StepDetails() {
         placeholder="Elige un material"
         value={data.material}
         onChange={(e) => setField("material", e.target.value)}
-      />
-      <SelectField
-        id="frame"
-        label="Marco"
-        optional
-        options={FRAME_OPTIONS}
-        placeholder="Elige un marco"
-        value={data.frame}
-        onChange={(e) => setField("frame", e.target.value)}
       />
       <TextField
         id="customText"
