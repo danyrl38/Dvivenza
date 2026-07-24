@@ -97,7 +97,7 @@ export async function POST(request: Request) {
     });
   }
 
-  const saveOrder = (rec: Record<string, unknown>) =>
+  const saveOrder = (rec: OrderRecord | Record<string, unknown>) =>
     supabase.from("orders").insert(rec).select("id").single();
 
   let { data, error } = await saveOrder(record);
