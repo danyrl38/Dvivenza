@@ -97,11 +97,23 @@ export async function POST(request: Request) {
     });
   }
 
-  const { data, error } = await supabase
-    .from("orders")
-    .insert(record)
-    .select("id")
-    .single();
+  const saveOrder = (rec: Record<string, unknown>) =>
+    supabase.from("orders").insert(rec).select("id").single();
+
+  let { data, error } = await saveOrder(record);
+
+  // Resiliencia: si una columna opcional aún no existe en la tabla (p. ej.
+  // `shipping_address` sin migrar), reintentamos sin ella para NO perder el
+  // pedido. El resto de los datos se guarda igual.
+  if (error && /column|schema cache/i.test(error.message)) {
+    const fallback: Record<string, unknown> = { ...record };
+    delete fallback.shipping_address;
+    console.warn(
+      "[pedido] Reintentando sin columnas opcionales:",
+      error.message,
+    );
+    ({ data, error } = await saveOrder(fallback));
+  }
 
   if (error) {
     console.error("[pedido] Error al guardar en Supabase:", error.message);
