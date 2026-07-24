@@ -244,7 +244,19 @@ export default async function AdminPage() {
                     </Field>
                   )}
                   {order.budget && <Field label="Presupuesto">{order.budget}</Field>}
-                  {order.size && <Field label="Tamaño">{order.size}</Field>}
+                  {order.size && (
+                    <Field
+                      label={
+                        order.art_type === "funda"
+                          ? "Modelo de teléfono"
+                          : order.art_type === "prenda"
+                            ? "Tipo de prenda"
+                            : "Tamaño"
+                      }
+                    >
+                      {order.size}
+                    </Field>
+                  )}
                   {order.material && <Field label="Material">{order.material}</Field>}
                   {order.frame && <Field label="Marco">{order.frame}</Field>}
                   {order.custom_text && (

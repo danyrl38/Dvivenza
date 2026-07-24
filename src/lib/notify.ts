@@ -43,6 +43,12 @@ export async function sendOrderNotification(order: NotifyInput): Promise<void> {
   if (!apiKey || !to) return;
 
   const artLabel = ART_TYPE_LABELS[order.art_type] || order.art_type;
+  const sizeLabel =
+    order.art_type === "funda"
+      ? "Modelo de teléfono"
+      : order.art_type === "prenda"
+        ? "Tipo de prenda"
+        : "Tamaño";
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL || "https://dvivenza.vercel.app";
 
@@ -54,7 +60,7 @@ export async function sendOrderNotification(order: NotifyInput): Promise<void> {
     ["País", order.country],
     ["Tipo de obra", artLabel],
     ["N.º de personas", order.people_count],
-    ["Tamaño", order.size],
+    [sizeLabel, order.size],
     ["Material", order.material],
     ["Marco", order.frame],
     ["Texto personalizado", order.custom_text],

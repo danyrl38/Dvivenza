@@ -237,6 +237,19 @@ export const MATERIAL_OPTIONS = [
   "No estoy segura/o",
 ];
 
+// Tipos de prenda (cuando el tipo de obra es "prenda").
+export const GARMENT_OPTIONS = [
+  "Pantalón",
+  "Tenis",
+  "Chamarra",
+  "Playera",
+  "Sudadera",
+  "Vestido",
+  "Falda",
+  "Gorra",
+  "Otro",
+];
+
 export const ACCEPTED_IMAGE_TYPES = [
   "image/jpeg",
   "image/jpg",
